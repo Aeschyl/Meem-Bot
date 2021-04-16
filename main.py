@@ -110,14 +110,15 @@ async def on_message(message):
                 await reddit.subreddit_result("cringepics", message)
 
             elif str.strip(message.content.lower()) in [f'{prefix}rank', f'{prefix}level', f'{prefix}experience', f'{prefix}xp', f'{prefix}exp']:
-                await ranking.show_rank(users, message.author, message)
+                await message.channel.send("Sorry, this feature is STILL under development.")
+                #await ranking.show_rank(users, message.author, message)
 
             else:  # this is for when the sender uses an ! but does not follow up with a viable command
                 await message.channel.send("Sorry, I do not understand that")
 
         else:  # this is for when the sender does not use a exclamation mark (!)
-            await ranking.update_data(users, message.author, 5)
-            await ranking.level_up(users, message.author, message.channel)
+            #await ranking.update_data(users, message.author, 5)
+            #await ranking.level_up(users, message.author, message.channel)
 
             with open('users.json', 'w') as f:
                 json.dump(users, f)
