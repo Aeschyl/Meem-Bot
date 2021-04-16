@@ -3,14 +3,12 @@ import discord
 import random
 import asyncio
 import json
-import os
 from python_scripts import reddit, weather, ranking
 
 client = discord.Client()
 
 # variables
 prefix = "~"
-os.chdir('D:\CODE\Python\Discord\DiscordBot(1)')
 
 
 @client.event
