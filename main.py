@@ -18,16 +18,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    with open('users.json', 'r') as f:
-        users = json.load(f)
-
-    await ranking.update_data(users, message.author, 5)
-    await ranking.level_up(users, message.author, message.channel)
-
-    with open('users.json', 'w') as f:
-        json.dump(users, f)
-
     if message.author != client.user:
+
+        with open('users.json', 'r') as f:
+            users = json.load(f)
 
         if message.content.startswith(prefix):
 
@@ -122,7 +116,11 @@ async def on_message(message):
                 await message.channel.send("Sorry, I do not understand that")
 
         else:  # this is for when the sender does not use a exclamation mark (!)
-            return
+            await ranking.update_data(users, message.author, 5)
+            await ranking.level_up(users, message.author, message.channel)
+
+            with open('users.json', 'w') as f:
+                json.dump(users, f)
 
     else:  # this is for when the bot is the sender, so an empty return because it is not supposed to respond to itself.
         return
