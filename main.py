@@ -3,7 +3,7 @@ import discord
 import random
 import asyncio
 import json
-from python_scripts import reddit, weather, ranking
+from commands import reddit, weather, ranking
 
 client = discord.Client()
 
