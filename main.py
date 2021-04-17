@@ -4,8 +4,10 @@ import random
 import asyncio
 import json
 from commands import reddit, weather, ranking
+from rethinkdb import RethinkDB
 
 client = discord.Client()
+r = RethinkDB()
 
 # variables
 prefix = "~"
@@ -154,4 +156,4 @@ async def on_reaction_add(reaction, user):
                 await clear_message.channel.purge(limit=4)
 
 
-client.run('ODI2NDk4OTQzNjQ2MTcxMTU2.YGNXHw.4M-V4Qeqiv7KKeICk2vLegn_CQ4')
+client.run('ODI2NDk4OTQzNjQ2MTcxMTU2.YGNXHw.-E7DILjqoXNX9juQOjeR4ELPiM8')
