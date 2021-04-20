@@ -4,10 +4,8 @@ import random
 import asyncio
 import json
 from commands import reddit, weather, ranking
-from rethinkdb import RethinkDB
 
 client = discord.Client()
-r = RethinkDB()
 
 # variables
 prefix = "~"
@@ -22,8 +20,14 @@ async def on_ready():
 async def on_message(message):
     if message.author != client.user:
 
-        #with open('users.json', 'r') as f:
-            #users = json.load(f)
+        with open('users.json', 'r') as f:
+            users = json.load(f)
+
+        await ranking.update_data(users, message.author, 5)
+        await ranking.level_up(users, message.author, message.channel)
+
+        with open('users.json', 'w') as f:
+            json.dump(users, f)
 
         if message.content.startswith(prefix):
 
@@ -79,7 +83,6 @@ async def on_message(message):
                 else:
                     await message.channel.send("Sorry pleb, command reserved for people better than you.")
 
-
             # memes
             elif f"{prefix}meme" == str.strip(message.content.lower()) or f"{prefix}memes" == str.strip(
                     message.content.lower()):
@@ -111,20 +114,16 @@ async def on_message(message):
                     message.content.lower()):
                 await reddit.subreddit_result("cringepics", message)
 
-            elif str.strip(message.content.lower()) in [f'{prefix}rank', f'{prefix}level', f'{prefix}experience', f'{prefix}xp', f'{prefix}exp']:
+            elif str.strip(message.content.lower()) in [f'{prefix}rank', f'{prefix}level', f'{prefix}experience',
+                                                        f'{prefix}xp', f'{prefix}exp']:
                 await message.channel.send("Sorry, this feature is STILL under development.")
-                #await ranking.show_rank(users, message.author, message)
+                # await ranking.show_rank(users, message.author, message)
 
             else:  # this is for when the sender uses an ! but does not follow up with a viable command
                 await message.channel.send("Sorry, I do not understand that")
 
         else:  # this is for when the sender does not use a exclamation mark (!)
             return
-            #await ranking.update_data(users, message.author, 5)
-            #await ranking.level_up(users, message.author, message.channel)
-
-            #with open('users.json', 'w') as f:
-                #json.dump(users, f)
 
     else:  # this is for when the bot is the sender, so an empty return because it is not supposed to respond to itself.
         return
