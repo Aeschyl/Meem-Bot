@@ -116,8 +116,7 @@ async def on_message(message):
 
             elif str.strip(message.content.lower()) in [f'{prefix}rank', f'{prefix}level', f'{prefix}experience',
                                                         f'{prefix}xp', f'{prefix}exp']:
-                await message.channel.send("Sorry, this feature is STILL under development.")
-                # await ranking.show_rank(users, message.author, message)
+                await ranking.show_rank(users, message.author, message)
 
             else:  # this is for when the sender uses an ! but does not follow up with a viable command
                 await message.channel.send("Sorry, I do not understand that")
