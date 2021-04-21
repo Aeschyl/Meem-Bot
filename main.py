@@ -3,6 +3,7 @@ import discord
 import random
 import asyncio
 import json
+import os
 from commands import reddit, weather, ranking
 
 client = discord.Client()
@@ -154,4 +155,4 @@ async def on_reaction_add(reaction, user):
                 await clear_message.channel.purge(limit=4)
 
 
-client.run('ODI2NDk4OTQzNjQ2MTcxMTU2.YGNXHw.-E7DILjqoXNX9juQOjeR4ELPiM8')
+client.run('ODI2NDk4OTQzNjQ2MTcxMTU2.YGNXHw.4bI5xBKidjwpDixLUg5YIbR1Yhc')
