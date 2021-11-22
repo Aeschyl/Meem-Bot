@@ -6,7 +6,7 @@ import random
 
 async def subreddit_result(sub, message):
     reddit = praw.Reddit(client_id="fP0Q4SjPGJYNHQ", client_secret="IxnUxm4Jj_fTmVkGnIMtr0L9ckqYRw",
-                         username="discord_bot_py", password="REDACTED", user_agent="meem_bot", check_for_async=False) #The password is you-know-what without punctuation
+                         username="discord_bot_py", password="REDACTED", user_agent="meem_bot", check_for_async=False) #The password is you-know-what but without punctuation
     all_submissions = []
 
     subreddit = reddit.subreddit(sub)
